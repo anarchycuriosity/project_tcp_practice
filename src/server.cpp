@@ -39,6 +39,8 @@ int main()
     // 协议簇
     sockaddr.sin_family = AF_INET; // 初始化的一个步骤，再次确认我是IPv4协议
     // ip地址
+    // string作为一个比较特殊的类，他的原始指针被隐藏
+    // 如果用&string那么只会得到首地址
     sockaddr.sin_addr.s_addr = inet_addr(ip.c_str());
     // 端口
     sockaddr.sin_port = htons(port); // host to network short把主机字节序转成网络字节序
@@ -50,7 +52,7 @@ int main()
     }
     else
     {
-        printf("socket bind success : ip = %d port=%d\n", ip.c_str(), port);
+        printf("socket bind success : ip = %s port=%d\n", ip.c_str(), port);
     }
 
     // 监听socket
@@ -89,3 +91,4 @@ int main()
 // sudo netstat -anp | grep :8080
 // 命令1是列出所有的网络连接和接口然后把这个结果传到第二个，然后查找
 // 可以去看正在发生的进程
+// nc 127.0.0.1 8888
