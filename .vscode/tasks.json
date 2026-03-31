@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build_Project",
+            "type": "shell",
+            // 在 WSL 环境下直接使用 g++
+            "command": "g++",
+            "args": [
+                "${file}",
+                "-o",
+                "${workspaceFolder}/bin/${fileBasenameNoExtension}",
+                "-I",
+                "${workspaceFolder}/inc/",
+                "-std=c++20",
+                "-Wall",
+                "-g"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc"
+        }
+    ]
+}
